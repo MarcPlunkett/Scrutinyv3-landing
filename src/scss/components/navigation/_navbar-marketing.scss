@@ -14,8 +14,20 @@
         }
     }
     .navbar-brand {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
         font-weight: bold;
+        margin-right: 0;
+        img {
+            height: 1rem;
+        }
+        svg {
+            height: 1rem;
+            fill: currentColor;
+        }
+    }
+    .navbar-brand-light {
+        font-size: 1.8rem;
+        font-weight: 200;
         img {
             height: 1rem;
         }

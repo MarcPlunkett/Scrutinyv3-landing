@@ -3,8 +3,11 @@ mixin navbar(options)
 
     nav.navbar.navbar-marketing.navbar-expand-lg(class=options.navbarBg, class=options.navbarStyle, class=options.navbarPosition)
         div(class=options.navbarContainer)
-            a.navbar-brand(href='index.html', class=options.navbarBrandColor)
-                | SB UI Kit Pro
+            section
+                a.navbar-brand(href='index.html', class=options.navbarBrandColor)
+                    | scrutiny
+                a.navbar-brand-light(href='index.html', class=options.navbarBrandColor)
+                    |.app
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
                 i(data-feather='menu')
             #navbarSupportedContent.collapse.navbar-collapse
@@ -14,7 +17,7 @@ mixin navbar(options)
                             | Home 
                     li.nav-item.dropdown.dropdown-xl.no-caret
                         a#navbarDropdownDemos.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                            | Landings
+                            | About
                             i.fas.fa-chevron-right.dropdown-arrow
                         .dropdown-menu.dropdown-menu-right.animated--fade-in-up.mr-lg-n25.mr-xl-n15(aria-labelledby='navbarDropdownDemos')
                             .row.no-gutters
@@ -56,7 +59,7 @@ mixin navbar(options)
                                             a.dropdown-item(href='header-nav-only.html') Nav Only
                     li.nav-item.dropdown.dropdown-xl.no-caret
                         a#navbarDropdownPages.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                            | Pages
+                            | Blog
                             i.fas.fa-chevron-right.dropdown-arrow
                         .dropdown-menu.dropdown-menu-right.mr-lg-n20.mr-xl-n15.animated--fade-in-up(aria-labelledby='navbarDropdownPages')
                             .row.no-gutters
@@ -103,7 +106,7 @@ mixin navbar(options)
                                     a.dropdown-item(href='page-error-504.html') 504 Error
                     li.nav-item.dropdown.no-caret
                         a#navbarDropdownDocs.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                            | Documentation
+                            | Web
                             i.fas.fa-chevron-right.dropdown-arrow
                         .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='navbarDropdownDocs')
                             a.dropdown-item.py-3(href='https://docs.startbootstrap.com/sb-ui-kit-pro/quickstart', target='_blank')
@@ -128,5 +131,5 @@ mixin navbar(options)
                                     | Updates and changes
                                 
                 a.btn.font-weight-500.ml-lg-4(href="https://shop.startbootstrap.com/sb-ui-kit-pro", class=options.navbarBtnColor)
-                    | Buy Now
+                    | Download Now
                     i.ml-2(data-feather='arrow-right')

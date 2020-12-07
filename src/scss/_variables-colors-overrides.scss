@@ -1,1 +1,19 @@
 // Override any Bootstrap SCSS variables here
+$red: #F7453B;
+$orange: #f76400;
+$yellow: #F69813;
+$green: #1AC10B;
+$teal: #00ba94;
+$cyan: #00cfd5;
+$blue: #0061f2;
+$indigo: #3c19a6;
+$purple: #8F6DF7;
+$pink: #e30059;
+
+$primary:   $indigo;
+$secondary: $purple;
+$success:   $green;
+$info:      $cyan;
+$warning:   $yellow;
+$danger:    $red;
+$dark:      $gray-900;

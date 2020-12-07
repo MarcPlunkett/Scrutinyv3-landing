@@ -3,7 +3,7 @@ extends ../layouts/default.pug
 block config
 
     //- Global Page Configuration
-    - var pageTitle = 'Home'
+    - var pageTitle = 'Mobile App'
 
 append css
     link(rel='stylesheet', href='https://unpkg.com/aos@next/dist/aos.css')
@@ -17,9 +17,9 @@ block content
     include mixins/navbar.pug
     +navbar({
         navbarBg: 'bg-transparent',
-        navbarStyle: 'navbar-light',
-        navbarBrandColor: 'text-primary',
-        navbarBtnColor: 'btn-primary',
+        navbarStyle: 'navbar-dark',
+        navbarBrandColor: 'text-white',
+        navbarBtnColor: 'btn-white',
         navbarContainer: 'container',
         navbarPosition: 'fixed-top'
     })
@@ -30,102 +30,72 @@ block content
 
     include mixins/header.pug
     +header({
-        pageHeaderBg: 'bg-white',
-        pageHeaderStyle: 'page-header-light',
+        pageHeaderBg: 'bg-primary',
+        pageHeaderStyle: 'page-header-dark',
         svgBorderAngled: false,
         svgBorderRounded: true,
         svgBorderWaves: false,
-        svgBorderFill: 'text-light'
+        svgBorderFill: 'text-white'
     })
 
-        .page-header-content.pt-5
+        .page-header-content.mb-n5
             .container
-                .row.align-items-center
-                    .col-lg-6(data-aos='fade-up')
-                        h1.page-header-title Build your next project faster with SB UI Kit Pro
-                        p.page-header-text.mb-5 Welcome to SB UI Kit Pro, a toolkit for building beautiful web interfaces, created by the development team at Start Bootstrap
-                        a.btn.btn-lg.btn-primary.font-weight-500.mr-3(href='landing-multipurpose.html')
-                            | View Demo
-                            i.ml-2(data-feather='arrow-right')
-                        a.btn.btn-lg.btn-primary-soft.text-primary.font-weight-500(href='https://docs.startbootstrap.com/sb-ui-kit-pro/quickstart')
-                            | Documentation
-                    .col-lg-6.d-none.d-lg-block(data-aos='fade-up', data-aos-delay='100')
-                        img.img-fluid(src='assets/img/illustrations/programming.svg')
+                .row.justify-content-center.align-items-center
+                    .col-lg-6(data-aos='fade-right')
+                        h1.page-header-title Groundbreaking research from your smartphone
+                        p.page-header-text.mb-5 Finding research for your projects has mever been easier. Get started now!
+                        .mb-5.mb-lg-0
+                            a.mr-3(href='#!')
+                                img(src='assets/img/app-badges/app-store-badge.svg', style="height: 3rem;")
+                            a(href='#!')
+                                img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
+                            .page-header-text.mt-2.text-xs.font-italic
+                                | * Requires Android OS 4.3+ or Apple iOS 9.3+
+                    .col-lg-6.z-1(data-aos='fade-left')
+                        .device-wrapper.mx-auto.mb-n15
+                            .device(data-device='iPhoneX', data-orientation='portrait', data-color='black')
+                                .screen
+                                    img(src='assets/img/app-screenshots/search-screen.png').img-fluid.z-1
 
-    //- * * * * * * * * * * *
-    //- * * Landing Tiles * *
-    //- * * * * * * * * * * *
+    //- * * * * * * * * * * * * *
+    //- * * Features Section  * *
+    //- * * * * * * * * * * * * *
 
     include mixins/section.pug
     +section({
-        sectionBg: 'bg-light',
+        sectionBg: 'bg-white',
         sectionPadding: 'py-10',
         svgBorderAngled: false,
-        svgBorderRounded: true,
+        svgBorderRounded: false,
         svgBorderWaves: false,
-        svgBorderFill: 'text-white'
+        svgBorderFill: ''
     })
 
         .container
-            .row.justify-content-center
-                .col-lg-8
-                    .text-center.mb-10
-                        .badge.badge-pill.badge-primary-soft.text-primary.badge-marketing.mb-3 12 Demos!
-                        h2 Landing Pages
-                        p.lead
-                            | When you purchase this UI Kit, you get access to a robust suite of powerful landing page demos to help you get started.
             .row.text-center
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 1 - Multipurpose
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-multipurpose.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-multipurpose.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 2 - Mobile App
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-app-mobile.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-app-mobile.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 3 - Desktop App
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-app-desktop.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-app-desktop.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 4 - Agency
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-agency.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-agency.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 5 - Lead Capture
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-lead-capture.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-lead-capture.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 6 - Press
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-press.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-press.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 7 - Directory
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-directory.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-directory.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 8 - Rental
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-rental.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-rental.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 9 - Real Estate
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-real-estate.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-real-estate.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 10 - Classifieds
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-classifieds.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-classifieds.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 11 - Resume
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-resume.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-resume.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 12 - Portfolio
-                    a.d-block.rounded-lg.lift.lift-lg(href='landing-portfolio.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/landing-portfolio.png')
+                .col-lg-4.mb-5.mb-lg-0
+                    .icon-stack.icon-stack-xl.bg-primary.text-white.mb-4
+                        i(data-feather='layers')
+                    h3 Built for researchers
+                    p.mb-0
+                        | Our customizable, block-based build system makes creating your next project fast and easy!
+                .col-lg-4.mb-5.mb-lg-0
+                    .icon-stack.icon-stack-xl.bg-primary.text-white.mb-4
+                        i(data-feather='smartphone')
+                    h3 Modern responsive design
+                    p.mb-0
+                        | Featuring carefully crafted, mobile-first components, your end product will function beautifully on any device!
+                .col-lg-4
+                    .icon-stack.icon-stack-xl.bg-primary.text-white.mb-4
+                        i(data-feather='code')
+                    h3 Complete coverage
+                    p.mb-0
+                        | All of the layouts, page sections, components, and utilities are fully covered in this products docs.
+
+    hr
 
     //- * * * * * * * * * * *
-    //- * * Pages Tiles * *
+    //- * * Testimonials  * *
     //- * * * * * * * * * * *
 
     include mixins/section.pug
@@ -133,183 +103,132 @@ block content
         sectionBg: 'bg-white',
         sectionPadding: 'py-10',
         svgBorderAngled: false,
-        svgBorderRounded: true,
+        svgBorderRounded: false,
         svgBorderWaves: false,
-        svgBorderFill: 'text-light'
+        svgBorderFill: ''
     })
 
         .container
-            .row.justify-content-center
-                .col-lg-8
-                    .text-center.mb-10
-                        .badge.badge-pill.badge-primary-soft.text-primary.badge-marketing.mb-3 19 Pages!
-                        h2 Inner Pages
-                        p.lead
-                            | A group of pre-build inner page demos are available to get your started when building out the rest of your project!
-            .row
-                .col-lg-4.mb-5
-                    h6.mb-3 Company Pages
-                    .list-group.small.shadow.mb-5
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-basic.html')
-                            | Basic Page
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-company-about.html')
-                            | About Page
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-company-pricing.html')
-                            | Pricing Page
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-company-contact.html')
-                            | Contact Page
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-company-terms.html')
-                            | Terms Page
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                    h6.mb-3 Careers Pages
-                    .list-group.small.shadow
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-careers-overview.html')
-                            | Careers List
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-careers-listing.html')
-                            | Position Details
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                .col-lg-4.mb-5
-                    h6.mb-3 Support Pages
-                    .list-group.small.shadow.mb-5
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-help-center.html')
-                            | Help Center
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-help-knowledgebase.html')
-                            | Knowledgebase
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-help-message-center.html')
-                            | Message Center
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-help-support-ticket.html')
-                            | Support Ticket
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                    h6.mb-3 Blog Pages
-                    .list-group.small.shadow
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-blog-overview.html')
-                            | Overview
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-blog-post.html')
-                            | Post
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-blog-archive.html')
-                            | Archive
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                .col-lg-4.mb-5
-                    h6.mb-3 Portfolio Pages
-                    .list-group.small.shadow
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-portfolio-grid.html')
-                            | Grid
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-portfolio-large-grid.html')
-                            | Large Grid
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-portfolio-masonry.html')
-                            | Masonry
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-portfolio-case-study.html')
-                            | Case Study
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
-                        a.list-group-item.list-group-item-action.d-flex.align-items-center.justify-content-between(href='page-portfolio-project.html')
-                            | Project
-                            i.fas.fa-arrow-right.fa-xs.text-gray-400
 
-    //- * * * * * * * * * * * *
-    //- * * Header Examples * *
-    //- * * * * * * * * * * * *
+            .row
+
+                .col-lg-6.mb-5.mb-lg-0.divider-right(data-aos='fade')
+                    .testimonial.p-lg-5
+                        .testimonial-brand.text-gray-400
+                            include /assets/img/demo/brand-logos/google.svg
+                        p.testimonial-quote.text-primary
+                            | "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut error vel omnis adipisci. Ad nam officiis sapiente dicta incidunt harum."
+                        .testimonial-name
+                            | Adam Hall
+                        .testimonial-position
+                            | Head of Engineering
+                .col-lg-6(data-aos='fade', data-aos-delay='100')
+                    .testimonial.p-lg-5
+                        .testimonial-brand.text-gray-400
+                            include /assets/img/demo/brand-logos/instagram.svg
+                        p.testimonial-quote.text-primary
+                            | "Adipisci mollitia nemo magnam iure, temporibus molestiae odit, sit harum dolores neque maiores quo eligendi nam corrupti."
+                        .testimonial-name
+                            | Lia Peterson
+                        .testimonial-position
+                            | Technical Project Manager
+
+    //- * * * * * * * * * * *
+    //- * * Feature Cards * *
+    //- * * * * * * * * * * *
 
     include mixins/section.pug
     +section({
         sectionBg: 'bg-light',
         sectionPadding: 'py-10',
         svgBorderAngled: false,
-        svgBorderRounded: true,
+        svgBorderRounded: false,
         svgBorderWaves: false,
-        svgBorderFill: 'text-white'
+        svgBorderFill: ''
     })
 
         .container
             .row.justify-content-center
-                .col-lg-8
-                    .text-center.mb-10
-                        .badge.badge-pill.badge-primary-soft.text-primary.badge-marketing.mb-3 Customizable!
-                        h2 Header Examples
-                        p.lead
-                            | Build your own landing page by starting with one of these customizable header examples! You can customize the colors, content, borders, and more!
-            .row.text-center
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 1 - Basic
-                    a.d-block.rounded-lg.lift.lift-lg(href='header-basic.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/header-basic.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 2 - Basic (Signup)
-                    a.d-block.rounded-lg.lift.lift-lg(href='header-basic-signup.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/header-basic-signup.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 3 - Graphic
-                    a.d-block.rounded-lg.lift.lift-lg(href='header-graphic.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/header-graphic.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 4 - Graphic (Signup)
-                    a.d-block.rounded-lg.lift.lift-lg(href='header-graphic-signup.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/header-graphic-signup.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 5 - Inner Page
-                    a.d-block.rounded-lg.lift.lift-lg(href='header-inner-page.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/header-inner-page.png')
-                .col-lg-4.mb-5
-                    h6.mb-3 Demo 6 - Nav Only
-                    a.d-block.rounded-lg.lift.lift-lg(href='header-nav-only.html')
-                        img.img-fluid.rounded-lg(src='assets/img/demo/screenshots/header-nav-only.png')
+                .col-lg-6
+                    .text-center
+                        .text-xs.text-uppercase-expanded.text-primary.mb-2 Application Features
+                        h2.mb-5 We have a simple solution to a complex problem
+            .row
+                .col-lg-4.col-md-6.mb-5(data-aos='fade-up')
+                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+                        .card-body.py-5
+                            .icon-stack.icon-stack-lg.bg-green-soft.text-green.mb-4
+                                i(data-feather='layers')
+                            h5 Components
+                            p.card-text.small Our product is full of customized and extendable components.
+                .col-lg-4.col-md-6.mb-5(data-aos='fade-up', data-aos-delay='100')
+                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+                        .card-body.py-5
+                            .icon-stack.icon-stack-lg.bg-red-soft.text-red.mb-4
+                                i(data-feather='tool')
+                            h5 Utilities
+                            p.card-text.small Powerful utility classes makes it easy to customize your product.
+                .col-lg-4.col-md-6.mb-5(data-aos='fade-up', data-aos-delay='150')
+                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+                        .card-body.py-5
+                            .icon-stack.icon-stack-lg.bg-yellow-soft.text-yellow.mb-4
+                                i(data-feather='layout')
+                            h5 Layouts
+                            p.card-text.small Our flex based layouts offer a beautifully reponsive approach.
+                .col-lg-4.col-md-6.mb-5.mb-lg-0(data-aos='fade-up')
+                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+                        .card-body.py-5
+                            .icon-stack.icon-stack-lg.bg-purple-soft.text-purple.mb-4
+                                i(data-feather='book')
+                            h5 Documentation
+                            p.card-text.small Our code is fully documented with instructions and usage examples.
+                .col-lg-4.col-md-6.mb-5.mb-md-0(data-aos='fade-up', data-aos-delay='100')
+                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+                        .card-body.py-5
+                            .icon-stack.icon-stack-lg.bg-blue-soft.text-blue.mb-4
+                                i(data-feather='code')
+                            h5 Code Snippets
+                            p.card-text.small Use code snippets to easily drop new components into your project.
+                .col-lg-4.col-md-6(data-aos='fade-up', data-aos-delay='150')
+                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+                        .card-body.py-5
+                            .icon-stack.icon-stack-lg.bg-orange-soft.text-orange.mb-4
+                                i(data-feather='package')
+                            h5 Plugins
+                            p.card-text.small We've implemented powerful third party plugins for added functionality.
 
-    //- * * * * * * * * * * *
-    //- * * Documentation * *
-    //- * * * * * * * * * * *
+
+    //- * * * * * * * * * * * *
+    //- * * Get App Section * *
+    //- * * * * * * * * * * * *
 
     include mixins/section.pug
     +section({
         sectionBg: 'bg-white',
         sectionPadding: 'py-10',
         svgBorderAngled: false,
-        svgBorderRounded: true,
-        svgBorderWaves: false,
-        svgBorderFill: 'text-light'
+        svgBorderRounded: false,
+        svgBorderWaves: true,
+        svgBorderFill: 'text-dark'
     })
 
         .container
-            .row.justify-content-center
-                .col-lg-8
-                    .text-center.mb-10
-                        h2 Documentation
-                        p.lead
-                            | Comprehensive documentation includes usage instructions, component reference, and utility class usage instructions
-            .row
-                .col-lg-4.text-center.mb-5
-                    .display-1.font-weight-bold.text-gray-400 70+
-                    .h5 Custom/Extended Components
-                    p We've extended and restyled Bootstrap's default components, and built a suite of new custom components.
-                .col-lg-4.text-center.mb-5
-                    .display-1.font-weight-bold.text-gray-400 35+
-                    .h5 Pre-Built Page Examples
-                    p Our pre-built page examples are a perfect way to get inspired for creating new pages and views.
-                .col-lg-4.text-center.mb-5
-                    .display-1.font-weight-bold.text-gray-400 100+
-                    .h5 Custom/Extended Utilites
-                    p We've extended and created new utility classes to give you more control over your content with minimal custom CSS.
-
-            .text-center
-                a.btn.btn-primary.font-weight-500(href='https://docs.startbootstrap.com/sb-ui-kit-pro/quickstart') View Documentation
+            .row.align-items-center
+                .col-lg-6
+                    h4 Get the app now!
+                    p.lead.mb-5.mb-lg-0 Ready to get started? Download the app now!
+                .col-lg-6.text-lg-right
+                    a.mr-3(href='#!')
+                        img(src='assets/img/app-badges/app-store-badge.svg', style="height: 3rem;")
+                    a(href='#!')
+                        img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
 
 block footer
 
     include mixins/footer.pug
     +footer({
-        footerBg: 'bg-light',
-        footerStyle: 'footer-light'
+        footerBg: 'bg-dark',
+        footerStyle: 'footer-dark'
     })
 
 append scripts
