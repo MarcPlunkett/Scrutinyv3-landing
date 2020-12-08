@@ -16,7 +16,7 @@ block content
 
     include mixins/navbar.pug
     +navbar({
-        navbarBg: 'bg-transparent',
+        navbarBg: 'bg-primary',
         navbarStyle: 'navbar-dark',
         navbarBrandColor: 'text-white',
         navbarBtnColor: 'btn-white',
@@ -43,14 +43,14 @@ block content
                 .row.justify-content-center.align-items-center
                     .col-lg-6(data-aos='fade-right')
                         h1.page-header-title Groundbreaking research from your smartphone
-                        p.page-header-text.mb-5 Finding research for your projects has mever been easier. Get started now!
+                        p.page-header-text.mb-5 Finding research for your projects has never been easier. Get started now!
                         .mb-5.mb-lg-0
-                            a.mr-3(href='#!')
+                            a.mr-3(href='#!' )
                                 img(src='assets/img/app-badges/app-store-badge.svg', style="height: 3rem;")
-                            a(href='#!')
-                                img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
+                            a( data-toggle="tooltip" data-placement="top" title="Coming soon")
+                                img(src='assets/img/app-badges/google-play-badge-grey.svg', style="height: 3rem;")
                             .page-header-text.mt-2.text-xs.font-italic
-                                | * Requires Android OS 4.3+ or Apple iOS 9.3+
+                                | * Requires Apple iOS 10.0+
                     .col-lg-6.z-1(data-aos='fade-left')
                         .device-wrapper.mx-auto.mb-n15
                             .device(data-device='iPhoneX', data-orientation='portrait', data-color='black')
@@ -78,25 +78,20 @@ block content
                         i(data-feather='layers')
                     h3 Built for researchers
                     p.mb-0
-                        | Our customizable, block-based build system makes creating your next project fast and easy!
+                        | By analyzing common research habits our solution makes performing your next literature review, starting your next project, or writing your next paper fast and easy! 
                 .col-lg-4.mb-5.mb-lg-0
                     .icon-stack.icon-stack-xl.bg-primary.text-white.mb-4
                         i(data-feather='smartphone')
-                    h3 Modern responsive design
+                    h3 Modern design
                     p.mb-0
-                        | Featuring carefully crafted, mobile-first components, your end product will function beautifully on any device!
+                        | Current research tools are antiquated! built from the ground up with the 21st century in mind. Mobile first with compatibility between devices and reference managers
                 .col-lg-4
                     .icon-stack.icon-stack-xl.bg-primary.text-white.mb-4
                         i(data-feather='code')
                     h3 Complete coverage
                     p.mb-0
-                        | All of the layouts, page sections, components, and utilities are fully covered in this products docs.
-
+                        | We get documents from multiple sources, ensuring your knowledge is complete. With extensive search tools and open source filters you'll find exactly what you need
     hr
-
-    //- * * * * * * * * * * *
-    //- * * Testimonials  * *
-    //- * * * * * * * * * * *
 
     include mixins/section.pug
     +section({
@@ -110,92 +105,142 @@ block content
 
         .container
 
-            .row
+            .row.align-items-center.justify-content-center
 
-                .col-lg-6.mb-5.mb-lg-0.divider-right(data-aos='fade')
-                    .testimonial.p-lg-5
-                        .testimonial-brand.text-gray-400
-                            include /assets/img/demo/brand-logos/google.svg
-                        p.testimonial-quote.text-primary
-                            | "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut error vel omnis adipisci. Ad nam officiis sapiente dicta incidunt harum."
-                        .testimonial-name
-                            | Adam Hall
-                        .testimonial-position
-                            | Head of Engineering
-                .col-lg-6(data-aos='fade', data-aos-delay='100')
-                    .testimonial.p-lg-5
-                        .testimonial-brand.text-gray-400
-                            include /assets/img/demo/brand-logos/instagram.svg
-                        p.testimonial-quote.text-primary
-                            | "Adipisci mollitia nemo magnam iure, temporibus molestiae odit, sit harum dolores neque maiores quo eligendi nam corrupti."
-                        .testimonial-name
-                            | Lia Peterson
-                        .testimonial-position
-                            | Technical Project Manager
+                .col-lg-6
+                    .badge.badge-primary-soft.text-primary.badge-marketing.badge-pill.mb-3 Get Started!
+                    .mb-5
+                        h2 Research the right way
+                        p.lead
+                            | 70% of researchers get overwhelmed when performing desk research. Scrutiny nudges your research in the right direction and speeds up knowledge discovery time by 80%
+                    .row
+                        .col-md-6.mb-4
+                            h6 Search
+                            p.mb-2.small Search over 300 million literature documents including top journals, conferences and patents
+                        .col-md-6.mb-4
+                            h6 Swipe
+                            p.mb-2.small.mb-0 We only show you the relevant information, if you think a document is useful simply swipe right!
+
+                    .row
+                        .col-md-6.mb-4
+                            h6 Store
+                            p.mb-2.small.mb-0 Don't waste time organising your documents, all searches are pre-sorted so you can spend more time creating impact through your work
+
+                        .col-md-6.mb-4
+                            h6 Share
+                            p.small.mb-0 Easily share documents between devices, colleagues, research associates and more through scrutiny web
+                            a.small.text-arrow-icon(href="https://web.scrutiny.app/")
+                                | Access Now!
+                                i(data-feather="arrow-right")
+                .col-lg-6.z-1(data-aos='fade-left')
+                                        .device-wrapper.mx-auto.mb-n15
+                                            .device(data-device='iPhoneX', data-orientation='portrait', data-color='black')
+                                                .screen
+                                                    img(src='assets/img/app-screenshots/result-screen.png').img-fluid.z-1
+
+
+    //- * * * * * * * * * * *
+    //- * * Testimonials  * *
+    //- * * * * * * * * * * *
+
+    //- include mixins/section.pug
+    //- +section({
+    //-     sectionBg: 'bg-white',
+    //-     sectionPadding: 'py-10',
+    //-     svgBorderAngled: false,
+    //-     svgBorderRounded: false,
+    //-     svgBorderWaves: false,
+    //-     svgBorderFill: ''
+    //- })
+
+    //-     .container
+
+    //-         .row
+
+    //-             .col-lg-6.mb-5.mb-lg-0.divider-right(data-aos='fade')
+    //-                 .testimonial.p-lg-5
+    //-                     .testimonial-brand.text-gray-400
+    //-                         include /assets/img/demo/brand-logos/google.svg
+    //-                     p.testimonial-quote.text-primary
+    //-                         | "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut error vel omnis adipisci. Ad nam officiis sapiente dicta incidunt harum."
+    //-                     .testimonial-name
+    //-                         | Adam Hall
+    //-                     .testimonial-position
+    //-                         | Head of Engineering
+    //-             .col-lg-6(data-aos='fade', data-aos-delay='100')
+    //-                 .testimonial.p-lg-5
+    //-                     .testimonial-brand.text-gray-400
+    //-                         include /assets/img/demo/brand-logos/instagram.svg
+    //-                     p.testimonial-quote.text-primary
+    //-                         | "Adipisci mollitia nemo magnam iure, temporibus molestiae odit, sit harum dolores neque maiores quo eligendi nam corrupti."
+    //-                     .testimonial-name
+    //-                         | Lia Peterson
+    //-                     .testimonial-position
+    //-                         | Technical Project Manager
 
     //- * * * * * * * * * * *
     //- * * Feature Cards * *
     //- * * * * * * * * * * *
 
-    include mixins/section.pug
-    +section({
-        sectionBg: 'bg-light',
-        sectionPadding: 'py-10',
-        svgBorderAngled: false,
-        svgBorderRounded: false,
-        svgBorderWaves: false,
-        svgBorderFill: ''
-    })
+    //- include mixins/section.pug
+    //- +section({
+    //-     sectionBg: 'bg-light',
+    //-     sectionPadding: 'py-10',
+    //-     svgBorderAngled: false,
+    //-     svgBorderRounded: false,
+    //-     svgBorderWaves: false,
+    //-     svgBorderFill: ''
+    //- })
 
-        .container
-            .row.justify-content-center
-                .col-lg-6
-                    .text-center
-                        .text-xs.text-uppercase-expanded.text-primary.mb-2 Application Features
-                        h2.mb-5 We have a simple solution to a complex problem
-            .row
-                .col-lg-4.col-md-6.mb-5(data-aos='fade-up')
-                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
-                        .card-body.py-5
-                            .icon-stack.icon-stack-lg.bg-green-soft.text-green.mb-4
-                                i(data-feather='layers')
-                            h5 Components
-                            p.card-text.small Our product is full of customized and extendable components.
-                .col-lg-4.col-md-6.mb-5(data-aos='fade-up', data-aos-delay='100')
-                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
-                        .card-body.py-5
-                            .icon-stack.icon-stack-lg.bg-red-soft.text-red.mb-4
-                                i(data-feather='tool')
-                            h5 Utilities
-                            p.card-text.small Powerful utility classes makes it easy to customize your product.
-                .col-lg-4.col-md-6.mb-5(data-aos='fade-up', data-aos-delay='150')
-                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
-                        .card-body.py-5
-                            .icon-stack.icon-stack-lg.bg-yellow-soft.text-yellow.mb-4
-                                i(data-feather='layout')
-                            h5 Layouts
-                            p.card-text.small Our flex based layouts offer a beautifully reponsive approach.
-                .col-lg-4.col-md-6.mb-5.mb-lg-0(data-aos='fade-up')
-                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
-                        .card-body.py-5
-                            .icon-stack.icon-stack-lg.bg-purple-soft.text-purple.mb-4
-                                i(data-feather='book')
-                            h5 Documentation
-                            p.card-text.small Our code is fully documented with instructions and usage examples.
-                .col-lg-4.col-md-6.mb-5.mb-md-0(data-aos='fade-up', data-aos-delay='100')
-                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
-                        .card-body.py-5
-                            .icon-stack.icon-stack-lg.bg-blue-soft.text-blue.mb-4
-                                i(data-feather='code')
-                            h5 Code Snippets
-                            p.card-text.small Use code snippets to easily drop new components into your project.
-                .col-lg-4.col-md-6(data-aos='fade-up', data-aos-delay='150')
-                    a.card.text-center.text-decoration-none.h-100.lift(href='#!')
-                        .card-body.py-5
-                            .icon-stack.icon-stack-lg.bg-orange-soft.text-orange.mb-4
-                                i(data-feather='package')
-                            h5 Plugins
-                            p.card-text.small We've implemented powerful third party plugins for added functionality.
+    //-     .container
+    //-         .row.justify-content-center
+    //-             .col-lg-6
+    //-                 .text-center
+    //-                     .text-xs.text-uppercase-expanded.text-primary.mb-2 Application Features
+    //-                     h2.mb-5 We have a simple solution to a complex problem
+    //-         .row
+    //-             .col-lg-4.col-md-6.mb-5(data-aos='fade-up')
+    //-                 a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+    //-                     .card-body.py-5
+    //-                         .icon-stack.icon-stack-lg.bg-green-soft.text-green.mb-4
+    //-                             i(data-feather='layers')
+    //-                         h5 Components
+    //-                         p.card-text.small Our product is full of customized and extendable components.
+    //-             .col-lg-4.col-md-6.mb-5(data-aos='fade-up', data-aos-delay='100')
+    //-                 a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+    //-                     .card-body.py-5
+    //-                         .icon-stack.icon-stack-lg.bg-red-soft.text-red.mb-4
+    //-                             i(data-feather='tool')
+    //-                         h5 Utilities
+    //-                         p.card-text.small Powerful utility classes makes it easy to customize your product.
+    //-             .col-lg-4.col-md-6.mb-5(data-aos='fade-up', data-aos-delay='150')
+    //-                 a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+    //-                     .card-body.py-5
+    //-                         .icon-stack.icon-stack-lg.bg-yellow-soft.text-yellow.mb-4
+    //-                             i(data-feather='layout')
+    //-                         h5 Layouts
+    //-                         p.card-text.small Our flex based layouts offer a beautifully reponsive approach.
+    //-             .col-lg-4.col-md-6.mb-5.mb-lg-0(data-aos='fade-up')
+    //-                 a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+    //-                     .card-body.py-5
+    //-                         .icon-stack.icon-stack-lg.bg-purple-soft.text-purple.mb-4
+    //-                             i(data-feather='book')
+    //-                         h5 Documentation
+    //-                         p.card-text.small Our code is fully documented with instructions and usage examples.
+    //-             .col-lg-4.col-md-6.mb-5.mb-md-0(data-aos='fade-up', data-aos-delay='100')
+    //-                 a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+    //-                     .card-body.py-5
+    //-                         .icon-stack.icon-stack-lg.bg-blue-soft.text-blue.mb-4
+    //-                             i(data-feather='code')
+    //-                         h5 Code Snippets
+    //-                         p.card-text.small Use code snippets to easily drop new components into your project.
+    //-             .col-lg-4.col-md-6(data-aos='fade-up', data-aos-delay='150')
+    //-                 a.card.text-center.text-decoration-none.h-100.lift(href='#!')
+    //-                     .card-body.py-5
+    //-                         .icon-stack.icon-stack-lg.bg-orange-soft.text-orange.mb-4
+    //-                             i(data-feather='package')
+    //-                         h5 Plugins
+    //-                         p.card-text.small We've implemented powerful third party plugins for added functionality.
 
 
     //- * * * * * * * * * * * *
@@ -206,22 +251,22 @@ block content
     +section({
         sectionBg: 'bg-white',
         sectionPadding: 'py-10',
-        svgBorderAngled: false,
+        svgBorderAngled: true,
         svgBorderRounded: false,
-        svgBorderWaves: true,
+        svgBorderWaves: false,
         svgBorderFill: 'text-dark'
     })
 
         .container
             .row.align-items-center
-                .col-lg-6
+                .col-lg-5
                     h4 Get the app now!
                     p.lead.mb-5.mb-lg-0 Ready to get started? Download the app now!
                 .col-lg-6.text-lg-right
                     a.mr-3(href='#!')
                         img(src='assets/img/app-badges/app-store-badge.svg', style="height: 3rem;")
-                    a(href='#!')
-                        img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
+                    a(data-toggle="tooltip" data-placement="top" title="Coming soon")
+                        img(src='assets/img/app-badges/google-play-badge-grey.svg', style="height: 3rem;")
 
 block footer
 
