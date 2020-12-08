@@ -25,7 +25,8 @@ mixin navbar(options)
                                     .row
                                         .col-lg-6
                                             h6.dropdown-header.text-primary About
-                                            a.dropdown-item(href='page-company-about.html') About us
+                                            a.dropdown-item(data-toggle="tooltip" data-placement="top" title="Coming soon") About us
+                                            //- a.dropdown-item(href='page-company-about.html') About us
                                             a.dropdown-item(href='page-company-team.html') Team
                                             a.dropdown-item(href='page-company-contact.html') Contact
 
@@ -37,9 +38,12 @@ mixin navbar(options)
                             .row.no-gutters
                                 .col-lg-4.p-lg-5
                                     h6.dropdown-header.text-primary Blog
-                                    a.dropdown-item(href='page-blog-post.html') Latest post
-                                    a.dropdown-item(href='page-blog-overview.html') Blog Overview
-                                    a.dropdown-item(href='page-blog-archive.html') News
+                                    a.dropdown-item(data-toggle="tooltip" data-placement="top" title="Coming soon") Latest post
+                                    a.dropdown-item(data-toggle="tooltip" data-placement="top" title="Coming soon") Blog Overview
+                                    a.dropdown-item(data-toggle="tooltip" data-placement="top" title="Coming soon") News
+                                    //- a.dropdown-item(href='page-blog-post.html') Latest post
+                                    //- a.dropdown-item(href='page-blog-overview.html') Blog Overview
+                                    //- a.dropdown-item(href='page-blog-archive.html') News
                                 .col-lg-4.p-lg-5
                                     h6.dropdown-header.text-primary Socials
                                     a.dropdown-item(href='page-error-400.html') Facebook
@@ -48,32 +52,11 @@ mixin navbar(options)
                                     a.dropdown-item(href='page-error-404-1.html') Medium
 
 
-                    li.nav-item.dropdown.no-caret
-                        a#navbarDropdownDocs.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                            | Web
-                            i.fas.fa-chevron-right.dropdown-arrow
-                        .dropdown-menu.dropdown-menu-right.animated--fade-in-up(aria-labelledby='navbarDropdownDocs')
-                            a.dropdown-item.py-3(href='https://docs.startbootstrap.com/sb-ui-kit-pro/quickstart', target='_blank')
-                                .icon-stack.bg-primary-soft.text-primary.mr-4
-                                    i(data-feather='book-open')
-                                div
-                                    .small.text-gray-500 Documentation
-                                    | Usage instructions and reference
-                            .dropdown-divider.m-0
-                            a.dropdown-item.py-3(href='https://docs.startbootstrap.com/sb-ui-kit-pro/components', target='_blank')
-                                .icon-stack.bg-primary-soft.text-primary.mr-4
-                                    i(data-feather='code')
-                                div
-                                    .small.text-gray-500 Components
-                                    | Code snippets and reference
-                            .dropdown-divider.m-0
-                            a.dropdown-item.py-3(href='https://docs.startbootstrap.com/sb-ui-kit-pro/changelog', target='_blank')
-                                .icon-stack.bg-primary-soft.text-primary.mr-4
-                                    i(data-feather='file-text')
-                                div
-                                    .small.text-gray-500 Changelog
-                                    | Updates and changes
-                                
+                        
+
                 a.btn.font-weight-500.ml-lg-4(href="index.html", class=options.navbarBtnColor)
                     | Download Now
+                    
+                a.btn.font-weight-500.ml-lg-4(href="https://web.scrutiny.app", class=options.navbarBtnColor)
+                    | Go to scrutiny web
                     i.ml-2(data-feather='arrow-right')
