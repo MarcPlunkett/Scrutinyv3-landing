@@ -31,10 +31,10 @@
     <img src="public/favicon.svg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">scrutiny.app web</h3>
+  <h3 align="center">scrutiny.app website</h3>
 
   <p align="center">
-    Web interface for scrutiny.app
+    Website for scrutiny.app
     <br />
     <a href="https://github.com/github_username/Scrutinyv3-landing"><strong>Explore the docs (Coming soon)»</strong></a>
     <br />
