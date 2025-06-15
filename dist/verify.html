@@ -1,0 +1,43 @@
+<!-- verify.pug--><!DOCTYPE html>
+<html>
+    <head>
+        <title>Email Verification</title>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        <script>
+            const SUPABASE_URL = 'https://your-project-id.supabase.co';
+            const SUPABASE_ANON_KEY = 'your-anon-key';
+            const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            window.onload = async () => {
+                const params = new URLSearchParams(window.location.search);
+                const token = params.get('access_token');
+                const type = params.get('type');
+
+                if (!token || type !== 'signup') {
+                    document.body.innerHTML = '<h2>Invalid or missing verification link.</h2>';
+                    return;
+                }
+
+                try {
+                    const { data, error } = await supabase.auth.getUser(token);
+                    if (error || !data?.user) {
+                        document.body.innerHTML = `<h2>Verification failed.</h2><p>${error?.message || 'Unknown error'}</p>`;
+                        return;
+                    }
+
+                    document.body.innerHTML = `<h2>Email Verified ✅</h2><p>Welcome, ${data.user.email}</p><p>Redirecting back to the app...</p>`;
+
+                    // Deep link back into mobile app
+                    setTimeout(() => {
+                        window.location.href = 'scrutiny://verified';
+                    }, 3000);
+                } catch (err) {
+                    document.body.innerHTML = `<h2>Error occurred during verification.</h2>`;
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <h2>Verifying...</h2>
+    </body>
+</html>
