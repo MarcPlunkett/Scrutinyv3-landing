@@ -11,8 +11,8 @@
         "clean": "node scripts/clean.js",
         "start": "npm run build && node scripts/start.js",
         "start:debug": "npm run build && node scripts/start-debug.js",
-          "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
     },
     "description": "A premium admin dashboard theme based on Bootstrap 4, created by Start Bootstrap.",
     "keywords": [

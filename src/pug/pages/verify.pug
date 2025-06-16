@@ -1,46 +1,28 @@
-// verify.pug
 doctype html
-
-block config
-
-    //- Global Page Configuration
-    - var pageTitle = 'Verify'
-
 html
   head
-    title Email Verification
-    script(src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"). 
-    script.
-      const SUPABASE_URL = 'https://your-project-id.supabase.co';
-      const SUPABASE_ANON_KEY = 'your-anon-key';
-      const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-      window.onload = async () => {
-        const params = new URLSearchParams(window.location.search);
-        const token = params.get("access_token");
-        const type = params.get("type");
-
-        if (!token || type !== "signup") {
-          document.body.innerHTML = "<h2>Invalid or missing verification link.</h2>";
-          return;
-        }
-
-        try {
-          const { data, error } = await supabase.auth.getUser(token);
-          if (error || !data?.user) {
-            document.body.innerHTML = `<h2>Verification failed.</h2><p>${error?.message || 'Unknown error'}</p>`;
-            return;
-          }
-
-          document.body.innerHTML = `<h2>Email Verified ✅</h2><p>Welcome, ${data.user.email}</p><p>Redirecting back to the app...</p>`;
-
-          // Deep link back into mobile app
-          setTimeout(() => {
-            window.location.href = "scrutiny://verified";
-          }, 3000);
-        } catch (err) {
-          document.body.innerHTML = `<h2>Error occurred during verification.</h2>`;
-        }
-      };
+    title Email Verified
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    style.
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #ffffff;
+        color: #222;
+        text-align: center;
+        padding: 60px 20px;
+      }
+      h1 {
+        color: #1AC10B;
+      }
+      p {
+        margin-top: 16px;
+        font-size: 18px;
+      }
   body
-    h2 Verifying...
+    h1 Email Verified ✅
+    p Thanks for confirming your address.
+    p You can now return to the app to continue signing up.
+    script.
+      setTimeout(() => {
+        window.location.href = "scrutiny://verified";
+      }, 2500);
