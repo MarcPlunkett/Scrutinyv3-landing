@@ -10,7 +10,7 @@
                 const type = queryParams.get('type') || hashParams.get('type');
                 const source = queryParams.get('source');
 
-                if (type === 'email_change' && source === 'email_update') {
+                if (source === 'email_update') {
                     window.location.href = '/email-change-confirmed.html' + window.location.hash + window.location.search;
                 } else if (type === 'email_change') {
                     window.location.href = '/verify.html' + window.location.hash + window.location.search;
