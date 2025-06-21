@@ -4,13 +4,18 @@
         <title>Redirecting...</title>
         <script>
             window.onload = () => {
+                const queryParams = new URLSearchParams(window.location.search);
                 const hashParams = new URLSearchParams(window.location.hash.slice(1));
-                const type = hashParams.get('type');
 
-                if (type === 'email_change') {
-                    window.location.href = '/verify.html' + window.location.hash;
+                const type = queryParams.get('type') || hashParams.get('type');
+                const source = queryParams.get('source');
+
+                if (source === 'email_update') {
+                    window.location.href = '/email-change-confirmed.html' + window.location.hash + window.location.search;
+                } else if (type === 'email_change') {
+                    window.location.href = '/verify.html' + window.location.hash + window.location.search;
                 } else if (type === 'recovery') {
-                    window.location.href = '/reset-password.html' + window.location.hash;
+                    window.location.href = '/reset-password.html' + window.location.hash + window.location.search;
                 } else {
                     document.body.innerHTML = '<h2>Unsupported action type.</h2>';
                 }
