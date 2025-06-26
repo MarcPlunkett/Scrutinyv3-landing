@@ -18,10 +18,10 @@
                     window.location.href = '/verify.html' + window.location.hash + window.location.search;
                 } else if (type === 'recovery') {
                     window.location.href = '/reset-password.html' + window.location.hash + window.location.search;
-                } else if (accessToken) {
-                    // OAuth login success, forward to the correct web app
-                    const target = window.location.hostname === 'localhost' ? `http://localhost:3000/auth/callback#${hash}` : `https://web.scrutiny.app/auth/callback#${hash}`;
-                    window.location.href = target;
+                } else if (accessToken && source === 'local') {
+                    window.location.href = `http://localhost:3000/auth/callback#${hash}`;
+                } else if (accessToken && source === 'web') {
+                    window.location.href = `https://web.scrutiny.app/auth/callback#${hash}`;
                 } else {
                     document.body.innerHTML = '<h2>Unsupported action type.</h2>';
                 }
