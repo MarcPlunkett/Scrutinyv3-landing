@@ -9,6 +9,7 @@
 
                 const type = queryParams.get('type') || hashParams.get('type');
                 const source = queryParams.get('source');
+                const accessToken = hashParams.get('access_token');
 
                 if (source === 'email_update') {
                     window.location.href = '/email-change-confirmed.html' + window.location.hash + window.location.search;
@@ -16,6 +17,9 @@
                     window.location.href = '/verify.html' + window.location.hash + window.location.search;
                 } else if (type === 'recovery') {
                     window.location.href = '/reset-password.html' + window.location.hash + window.location.search;
+                } else if (accessToken) {
+                    // OAuth login success, forward to client route
+                    window.location.href = '/auth/callback#' + window.location.hash.slice(1);
                 } else {
                     document.body.innerHTML = '<h2>Unsupported action type.</h2>';
                 }
