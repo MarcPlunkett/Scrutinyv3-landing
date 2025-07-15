@@ -14,6 +14,8 @@
 
                 if (source === 'email_update') {
                     window.location.href = '/email-change-confirmed.html' + window.location.hash + window.location.search;
+                } else if (type === 'signup') {
+                    window.location.href = '/login' + window.location.hash + window.location.search;
                 } else if (type === 'email_change') {
                     window.location.href = '/verify.html' + window.location.hash + window.location.search;
                 } else if (type === 'recovery') {
