@@ -11,11 +11,13 @@
                 const type = queryParams.get('type') || hashParams.get('type');
                 const source = queryParams.get('source');
                 const accessToken = hashParams.get('access_token');
+                const isLocal = window.location.hostname === 'localhost';
+                const appBaseUrl = isLocal ? 'http://localhost:3000' : 'https://web.scrutiny.app';
 
                 if (source === 'email_update') {
                     window.location.href = '/email-change-confirmed.html' + window.location.hash + window.location.search;
                 } else if (type === 'signup') {
-                    window.location.href = '/login' + window.location.hash + window.location.search;
+                    window.location.href = appBaseUrl + '/' + window.location.hash + window.location.search;
                 } else if (type === 'email_change') {
                     window.location.href = '/verify.html' + window.location.hash + window.location.search;
                 } else if (type === 'recovery') {
