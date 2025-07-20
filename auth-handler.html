@@ -16,16 +16,17 @@
 
                 if (source === 'email_update') {
                     window.location.href = '/email-change-confirmed.html' + window.location.hash + window.location.search;
-                } else if (type === 'signup') {
-                    window.location.href = appBaseUrl + '/' + window.location.hash + window.location.search;
-                } else if (type === 'email_change') {
-                    window.location.href = '/verify.html' + window.location.hash + window.location.search;
-                } else if (type === 'recovery') {
-                    window.location.href = '/reset-password.html' + window.location.hash + window.location.search;
-                } else if (accessToken && source === 'local') {
-                    window.location.href = `http://localhost:3000/auth/callback#${hash}`;
-                } else if (accessToken && source === 'web') {
-                    window.location.href = `https://web.scrutiny.app/auth/callback#${hash}`;
+                } else if (type === 'signup' || type === 'email_change' || type === 'recovery') {
+                    // Redirects handled here on the landing site domain
+                    if (type === 'signup') {
+                        window.location.href = appBaseUrl + '/auth/callback#' + hash;
+                    } else if (type === 'email_change') {
+                        window.location.href = '/verify.html' + window.location.hash + window.location.search;
+                    } else if (type === 'recovery') {
+                        window.location.href = '/reset-password.html' + window.location.hash + window.location.search;
+                    }
+                } else if (accessToken) {
+                    window.location.href = appBaseUrl + '/auth/callback#' + hash;
                 } else {
                     document.body.innerHTML = '<h2>Unsupported action type.</h2>';
                 }
