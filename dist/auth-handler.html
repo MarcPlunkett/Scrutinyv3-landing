@@ -6,16 +6,24 @@
             window.onload = () => {
                 const queryParams = new URLSearchParams(window.location.search);
                 const hashParams = new URLSearchParams(window.location.hash.slice(1));
+                const hash = window.location.hash.slice(1);
 
                 const type = queryParams.get('type') || hashParams.get('type');
                 const source = queryParams.get('source');
+                const accessToken = hashParams.get('access_token');
+
+                const appBaseUrl = source === 'local' ? 'http://localhost:3000' : 'https://web.scrutiny.app';
 
                 if (source === 'email_update') {
                     window.location.href = '/email-change-confirmed.html' + window.location.hash + window.location.search;
+                } else if (type === 'signup') {
+                    window.location.href = appBaseUrl + '/auth/callback#' + hash;
                 } else if (type === 'email_change') {
                     window.location.href = '/verify.html' + window.location.hash + window.location.search;
                 } else if (type === 'recovery') {
                     window.location.href = '/reset-password.html' + window.location.hash + window.location.search;
+                } else if (accessToken) {
+                    window.location.href = appBaseUrl + '/auth/callback#' + hash;
                 } else {
                     document.body.innerHTML = '<h2>Unsupported action type.</h2>';
                 }

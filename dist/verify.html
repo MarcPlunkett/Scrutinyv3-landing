@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Email Verified</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-                background-color: #ffffff;
-                color: #222;
-                text-align: center;
-                padding: 60px 20px;
-            }
-            h1 {
-                color: #1ac10b;
-            }
-            p {
-                margin-top: 16px;
-                font-size: 18px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Verifying</h1>
-        <p>Please wait you will be redirected to the app once verified to continue signing up.</p>
-        <script>
-            setTimeout(() => {
-                window.location.href = 'scrutiny://verified';
-            }, 2500);
-        </script>
-    </body>
+  <head>
+    <title>Email Verified</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, sans-serif;
+        background-color: #ffffff;
+        color: #222;
+        text-align: center;
+        padding: 60px 20px;
+      }
+      h1 {
+        color: #1ac10b;
+      }
+      p {
+        margin-top: 16px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Verifying</h1>
+    <p>
+      Please wait… you’ll be redirected to the app or browser once verified.
+    </p>
+    <script>
+      const isMobileApp = () => {
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+        return /android|iphone|ipad|ipod/i.test(ua);
+      };
+
+      const fallbackUrl = 'http://localhost:3000/auth/callback';
+
+      // Try deep link first, then fallback
+      setTimeout(() => {
+        if (isMobileApp()) {
+          window.location.href = 'scrutiny://verified';
+        } else {
+          window.location.href = fallbackUrl;
+        }
+      }, 2500);
+    </script>
+  </body>
 </html>
