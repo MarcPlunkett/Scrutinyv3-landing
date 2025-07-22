@@ -22,10 +22,21 @@
     </head>
     <body>
         <h1>Verifying</h1>
-        <p>Please wait you will be redirected to the app once verified to continue signing up.</p>
+        <p>Please wait… you’ll be redirected to the app or browser once verified.</p>
         <script>
+            const isMobileApp = () => {
+                const ua = navigator.userAgent || navigator.vendor || window.opera;
+                return /android|iphone|ipad|ipod/i.test(ua);
+            };
+
+            const fallbackUrl = 'http://localhost:3000/auth/callback';
+
             setTimeout(() => {
-                window.location.href = 'scrutiny://verified';
+                if (isMobileApp()) {
+                    window.location.href = 'scrutiny://verified';
+                } else {
+                    window.location.href = fallbackUrl;
+                }
             }, 2500);
         </script>
     </body>
