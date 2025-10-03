@@ -83,6 +83,7 @@
                 overflow: hidden;
             }
         </style>
+        <!-- Optional: respect your theme’s light card bg if it differs-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
@@ -256,7 +257,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="sdn-actions"><button class="sdn-btn sdn-btn-outline" type="button" id="sdn-never">Don’t show again</button><button class="sdn-btn bg-primary" type="button" id="sdn-ok">OK, got it</button></div>
+                            <div class="sdn-actions"><button class="sdn-btn sdn-btn-primary" type="button" id="sdn-ok">OK, got it</button></div>
                         </div>
                     </div>
                 </main>
@@ -322,13 +323,11 @@
         </script>
         <script>
             (function () {
-                const KEY = 'scrutiny_shutdown_notice_v1'; // bump version to re-show for everyone
                 const overlay = document.getElementById('sdn-overlay');
                 if (!overlay) return;
 
                 const btnCloseX = overlay.querySelector('.sdn-close');
                 const btnOk = document.getElementById('sdn-ok');
-                const btnNever = document.getElementById('sdn-never');
 
                 const focusableSel = ['a[href]', 'button:not([disabled])', 'textarea', 'input[type="text"]', 'input[type="email"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="url"]', 'select', '[tabindex]:not([tabindex="-1"])'].join(',');
 
@@ -342,8 +341,7 @@
                     trapStart();
                 }
 
-                function close(opts) {
-                    if (opts?.remember) localStorage.setItem(KEY, String(Date.now()));
+                function close() {
                     overlay.hidden = true;
                     document.body.classList.remove('sdn-open');
                     document.removeEventListener('keydown', onKeyDown);
@@ -352,8 +350,8 @@
                 }
 
                 function onKeyDown(e) {
-                    if (e.key === 'Escape') close(); // Esc to close (does not remember)
-                    if (e.key === 'Tab') trapTab(e);
+                    if (e.key === 'Escape') close(); // Esc to close
+                    if (e.key === 'Tab') trapTab(e); // keep focus inside
                 }
 
                 function onBackdrop(e) {
@@ -383,16 +381,14 @@
                 }
 
                 // Wire buttons
-                btnCloseX?.addEventListener('click', () => close());
-                btnOk?.addEventListener('click', () => close({ remember: true }));
-                btnNever?.addEventListener('click', () => close({ remember: true }));
+                btnCloseX?.addEventListener('click', close);
+                btnOk?.addEventListener('click', close);
 
                 // Public hook to reopen from console if needed
                 window.openShutdownNotice = open;
 
-                // Show logic: only if not acknowledged before
-                const seen = localStorage.getItem(KEY);
-                if (!seen) open();
+                // Always show on load
+                open();
             })();
         </script>
     </body>
