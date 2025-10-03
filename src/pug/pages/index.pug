@@ -8,7 +8,51 @@ block config
 append css
     link(rel='stylesheet', href='https://unpkg.com/aos@next/dist/aos.css')
 
+append css
+  style.
+    /* Shutdown Notice (namespaced) */
+    #sdn-overlay[hidden] { display: none !important; }
+    #sdn-overlay {
+      position: fixed; inset: 0; z-index: 1055;
+      display: grid; place-items: center;
+      background: rgba(22, 28, 45, 0.55);
+      backdrop-filter: blur(2px);
+    }
+    .sdn-modal {
+      width: min(780px, 92vw);
+      max-height: 85vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 1rem 3rem rgba(0,0,0,.2);
+    }
+    .sdn-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.25rem; border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    .sdn-title { margin: 0; font-size: 1.25rem; font-weight: 600; }
+    .sdn-body { padding: 1.25rem; }
+    .sdn-actions {
+      display: flex; gap: .5rem; justify-content: flex-end; padding: 1rem 1.25rem;
+      border-top: 1px solid rgba(0,0,0,.05);
+    }
+    .sdn-close {
+      appearance: none; border: 0; background: transparent; font-size: 1.5rem; line-height: 1;
+      padding: .25rem; cursor: pointer;
+    }
+    .sdn-btn {
+      appearance: none; border: 0; cursor: pointer;
+      border-radius: .5rem; padding: .6rem 1rem; font-weight: 600;
+    }
+    .sdn-btn-primary { background: #0061f2; color: #fff; }
+    .sdn-btn-outline { background: #fff; color: #0061f2; border: 2px solid #0061f2; }
+    body.sdn-open { overflow: hidden; }
+  // Optional: respect your theme’s light card bg if it differs
+
+
 block content
+
+
 
     //- * * * * * * * *
     //- * * Navbar  * *
@@ -47,8 +91,8 @@ block content
                         .mb-5.mb-lg-0
                             a.mr-3(href='https://apps.apple.com/us/app/scrutiny/id1449138024' )
                                 img(src='assets/img/app-badges/app-store-badge.svg', style="height: 3rem;")
-                            a(href='https://play.google.com/store/apps/details?id=com.scrutinyandroid.scrutiny')
-                                img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
+                            //- a(href='https://play.google.com/store/apps/details?id=com.scrutinyandroid.scrutiny')
+                            //-     img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
 
                     .col-lg-6.z-1(data-aos='fade-left')
                         .device-wrapper.mx-auto.mb-n15
@@ -264,8 +308,28 @@ block content
                 .col-lg-6.text-lg-right
                     a.mr-3(href='https://apps.apple.com/us/app/scrutiny/id1449138024')
                         img(src='assets/img/app-badges/app-store-badge.svg', style="height: 3rem;")
-                    a(href='https://play.google.com/store/apps/details?id=com.scrutinyandroid.scrutiny')
-                        img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
+                    //- a(href='https://play.google.com/store/apps/details?id=com.scrutinyandroid.scrutiny')
+                    //-     img(src='assets/img/app-badges/google-play-badge.svg', style="height: 3rem;")
+
+    //- Shutdown Notice Modal (Option A - always show, single OK)
+    #sdn-overlay(role='dialog' aria-modal='true' aria-labelledby='sdn-title' hidden)
+      .sdn-modal
+        .sdn-header
+          h3.sdn-title#sdn-title Notice about Scrutiny
+          button.sdn-close(type='button' aria-label='Close') &times;
+        .sdn-body
+          h2.mb-4 My Journey with Scrutiny
+          p Scrutiny was a research facilitation platform I built from scratch to help academics and professionals streamline how they find and organise information. Over time, it grew to serve more than 400 daily users across global universities, research organisations, and companies.
+          p The platform was shaped directly through conversations with academics while I was completing my own PhD: I conducted 50+ structured interviews and iterated on features based on their feedback. I also explored fundraising opportunities, pitching the product to a number of early-stage investors.
+          p While Scrutiny never ultimatley became a commercial venture, it was one of the most valuable projects I’ve worked on. It gave me hands-on experience across the entire product lifecycle, from design and coding, to user research, onboarding, and investor engagement. Most importantly, it proved to me that I love building products, that I can take an idea from concept through to a working solution and get in the hands of real users.
+          p I no longer actively work on the project, but have chosen to leave it running in the hope that others might continue to find it useful, or perhaps even draw inspiration for their own work.
+          .card.bg-light.shadow-none
+            .card-body
+              p.mb-0 If you’d like to talk more about Scrutiny or my experience building it, feel free to reach out:
+                |  
+                a(href='mailto:marc@scrutiny.app') marc@scrutiny.app
+        .sdn-actions
+          button.sdn-btn.sdn-btn-primary(type='button' id='sdn-ok') OK, got it
 
 block footer
 
@@ -283,3 +347,72 @@ append scripts
             duration: 600,
             once: true
         });
+
+append scripts
+    //- Shutdown notice script (Option A: always show, no persistence)
+    script.
+        (function () {
+          const overlay = document.getElementById('sdn-overlay');
+          if (!overlay) return;
+
+          const btnCloseX = overlay.querySelector('.sdn-close');
+          const btnOk     = document.getElementById('sdn-ok');
+
+          const focusableSel = [
+            'a[href]','button:not([disabled])','textarea','input[type="text"]',
+            'input[type="email"]','input[type="search"]','input[type="tel"]',
+            'input[type="url"]','select','[tabindex]:not([tabindex="-1"])'
+          ].join(',');
+
+          function open() {
+            overlay.hidden = false;
+            document.body.classList.add('sdn-open');
+            const first = overlay.querySelector(focusableSel);
+            if (first) first.focus();
+            document.addEventListener('keydown', onKeyDown);
+            overlay.addEventListener('click', onBackdrop);
+            trapStart();
+          }
+
+          function close() {
+            overlay.hidden = true;
+            document.body.classList.remove('sdn-open');
+            document.removeEventListener('keydown', onKeyDown);
+            overlay.removeEventListener('click', onBackdrop);
+            trapStop();
+          }
+
+          function onKeyDown(e) {
+            if (e.key === 'Escape') close(); // Esc to close
+            if (e.key === 'Tab') trapTab(e); // keep focus inside
+          }
+
+          function onBackdrop(e) {
+            if (e.target === overlay) close(); // click outside modal content
+          }
+
+          // Focus trap
+          let focusables = [];
+          function trapStart() {
+            focusables = Array.from(overlay.querySelectorAll(focusableSel));
+          }
+          function trapStop() { focusables = []; }
+          function trapTab(e) {
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            const active = document.activeElement;
+            if (e.shiftKey && active === first) { last.focus(); e.preventDefault(); }
+            else if (!e.shiftKey && active === last) { first.focus(); e.preventDefault(); }
+          }
+
+          // Wire buttons
+          btnCloseX?.addEventListener('click', close);
+          btnOk?.addEventListener('click', close);
+
+          // Public hook to reopen from console if needed
+          window.openShutdownNotice = open;
+
+          // Always show on load
+          open();
+        })();

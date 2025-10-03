@@ -25,15 +25,15 @@ mixin navbar(options)
                                     .row
                                         .col-lg-6
                                             h6.dropdown-header.text-primary About
-                                            a.dropdown-item(data-toggle="tooltip" data-placement="top" title="Coming soon") About us
+                                            a.dropdown-item(href='page-company-about.html') About us
                                             //- a.dropdown-item(href='page-company-about.html') About us
                                             a.dropdown-item(href='page-company-team.html') Team
                                             a.dropdown-item(href='page-company-contact.html') Contact
 
                     li.nav-item.dropdown.dropdown-lg.no-caret
-                        a#navbarDropdownPages.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                            | Connect
-                            i.fas.fa-chevron-right.dropdown-arrow
+                        //- a#navbarDropdownPages.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        //-     | Connect
+                        //-     i.fas.fa-chevron-right.dropdown-arrow
                         .dropdown-menu.dropdown-menu-right.mr-xl-n20.mr-xl-n15.animated--fade-in-up(aria-labelledby='navbarDropdownPages')
                             .row.no-gutters
                                 .col-lg-4.p-lg-5
@@ -54,8 +54,8 @@ mixin navbar(options)
 
                         
 
-                a.btn.font-weight-500.ml-lg-4(href="index.html", class=options.navbarBtnColor)
-                    | Download Now
+                //- a.btn.font-weight-500.ml-lg-4(href="index.html", class=options.navbarBtnColor)
+                //-     | Download Now
                     
                 a.btn.font-weight-500.ml-lg-4(href="https://web.scrutiny.app", class=options.navbarBtnColor)
                     | Go to scrutiny web
