@@ -9,6 +9,80 @@
         <title>Mobile App - Scrutiny</title>
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <style>
+            /* Shutdown Notice (namespaced) */
+            #sdn-overlay[hidden] {
+                display: none !important;
+            }
+            #sdn-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 1055;
+                display: grid;
+                place-items: center;
+                background: rgba(22, 28, 45, 0.55);
+                backdrop-filter: blur(2px);
+            }
+            .sdn-modal {
+                width: min(780px, 92vw);
+                max-height: 85vh;
+                overflow: auto;
+                background: #fff;
+                border-radius: 1rem;
+                box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+            }
+            .sdn-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem 1.25rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            .sdn-title {
+                margin: 0;
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+            .sdn-body {
+                padding: 1.25rem;
+            }
+            .sdn-actions {
+                display: flex;
+                gap: 0.5rem;
+                justify-content: flex-end;
+                padding: 1rem 1.25rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            .sdn-close {
+                appearance: none;
+                border: 0;
+                background: transparent;
+                font-size: 1.5rem;
+                line-height: 1;
+                padding: 0.25rem;
+                cursor: pointer;
+            }
+            .sdn-btn {
+                appearance: none;
+                border: 0;
+                cursor: pointer;
+                border-radius: 0.5rem;
+                padding: 0.6rem 1rem;
+                font-weight: 600;
+            }
+            .sdn-btn-primary {
+                background: #0061f2;
+                color: #fff;
+            }
+            .sdn-btn-outline {
+                background: #fff;
+                color: #0061f2;
+                border: 2px solid #0061f2;
+            }
+            body.sdn-open {
+                overflow: hidden;
+            }
+        </style>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
@@ -164,6 +238,27 @@
                             <!-- Angled SVG Border--><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" fill="currentColor"><polygon points="0,100 100,0 100,100"></polygon></svg>
                         </div>
                     </section>
+                    <div id="sdn-overlay" role="dialog" aria-modal="true" aria-labelledby="sdn-title" hidden>
+                        <div class="sdn-modal">
+                            <div class="sdn-header">
+                                <h3 class="sdn-title" id="sdn-title">Notice about Scrutiny</h3>
+                                <button class="sdn-close" type="button" aria-label="Close">&times;</button>
+                            </div>
+                            <div class="sdn-body">
+                                <h2 class="mb-4">My Journey with Scrutiny</h2>
+                                <p>Scrutiny was a research facilitation platform I built from scratch to help academics and professionals streamline how they find and organise information. Over time, it grew to serve more than 400 daily users across global universities, research organisations, and companies.</p>
+                                <p>The platform was shaped directly through conversations with academics while I was completing my own PhD: I conducted 50+ structured interviews and iterated on features based on their feedback. I also explored fundraising opportunities, pitching the product to a number of early-stage investors.</p>
+                                <p>While Scrutiny never ultimatley became a commercial venture, it was one of the most valuable projects I’ve worked on. It gave me hands-on experience across the entire product lifecycle, from design and coding, to user research, onboarding, and investor engagement. Most importantly, it proved to me that I love building products, that I can take an idea from concept through to a working solution and get in the hands of real users.</p>
+                                <p>I no longer actively work on the project, but have chosen to leave it running in the hope that others might continue to find it useful, or perhaps even draw inspiration for their own work.</p>
+                                <div class="card bg-light shadow-none">
+                                    <div class="card-body">
+                                        <p class="mb-0">If you’d like to talk more about Scrutiny or my experience building it, feel free to reach out: <a href="mailto:marc@scrutiny.app">marc@scrutiny.app</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sdn-actions"><button class="sdn-btn sdn-btn-outline" type="button" id="sdn-never">Don’t show again</button><button class="sdn-btn bg-primary" type="button" id="sdn-ok">OK, got it</button></div>
+                        </div>
+                    </div>
                 </main>
             </div>
             <div id="layoutDefault_footer">
@@ -224,6 +319,81 @@
                 duration: 600,
                 once: true,
             });
+        </script>
+        <script>
+            (function () {
+                const KEY = 'scrutiny_shutdown_notice_v1'; // bump version to re-show for everyone
+                const overlay = document.getElementById('sdn-overlay');
+                if (!overlay) return;
+
+                const btnCloseX = overlay.querySelector('.sdn-close');
+                const btnOk = document.getElementById('sdn-ok');
+                const btnNever = document.getElementById('sdn-never');
+
+                const focusableSel = ['a[href]', 'button:not([disabled])', 'textarea', 'input[type="text"]', 'input[type="email"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="url"]', 'select', '[tabindex]:not([tabindex="-1"])'].join(',');
+
+                function open() {
+                    overlay.hidden = false;
+                    document.body.classList.add('sdn-open');
+                    const first = overlay.querySelector(focusableSel);
+                    if (first) first.focus();
+                    document.addEventListener('keydown', onKeyDown);
+                    overlay.addEventListener('click', onBackdrop);
+                    trapStart();
+                }
+
+                function close(opts) {
+                    if (opts?.remember) localStorage.setItem(KEY, String(Date.now()));
+                    overlay.hidden = true;
+                    document.body.classList.remove('sdn-open');
+                    document.removeEventListener('keydown', onKeyDown);
+                    overlay.removeEventListener('click', onBackdrop);
+                    trapStop();
+                }
+
+                function onKeyDown(e) {
+                    if (e.key === 'Escape') close(); // Esc to close (does not remember)
+                    if (e.key === 'Tab') trapTab(e);
+                }
+
+                function onBackdrop(e) {
+                    if (e.target === overlay) close(); // click outside modal content
+                }
+
+                // Focus trap
+                let focusables = [];
+                function trapStart() {
+                    focusables = Array.from(overlay.querySelectorAll(focusableSel));
+                }
+                function trapStop() {
+                    focusables = [];
+                }
+                function trapTab(e) {
+                    if (!focusables.length) return;
+                    const first = focusables[0];
+                    const last = focusables[focusables.length - 1];
+                    const active = document.activeElement;
+                    if (e.shiftKey && active === first) {
+                        last.focus();
+                        e.preventDefault();
+                    } else if (!e.shiftKey && active === last) {
+                        first.focus();
+                        e.preventDefault();
+                    }
+                }
+
+                // Wire buttons
+                btnCloseX?.addEventListener('click', () => close());
+                btnOk?.addEventListener('click', () => close({ remember: true }));
+                btnNever?.addEventListener('click', () => close({ remember: true }));
+
+                // Public hook to reopen from console if needed
+                window.openShutdownNotice = open;
+
+                // Show logic: only if not acknowledged before
+                const seen = localStorage.getItem(KEY);
+                if (!seen) open();
+            })();
         </script>
     </body>
 </html>
